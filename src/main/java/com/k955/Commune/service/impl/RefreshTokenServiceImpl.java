@@ -75,7 +75,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
                 .expiresAt(getRefreshTokenExpiry())
                 .build();
         userSessionRepository.save(userSession);
-        return userSession.getRefreshToken();
+        return newRefreshToken;
     }
 
     @Override

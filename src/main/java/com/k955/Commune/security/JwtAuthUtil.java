@@ -24,10 +24,10 @@ public class JwtAuthUtil {
 
     private final UserRepository userRepository;
 
-    @Value("${jwt.access.secret-key}")
+    @Value("${jwt.secret-key}")
     private String jwtSecretKey;
 
-    @Value("${jwt.access.expiration}")
+    @Value("${jwt.expiration}")
     private Long jwtExpiration;
 
     public SecretKey getSecretKey() {

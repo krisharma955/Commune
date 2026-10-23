@@ -41,4 +41,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(exceptionResponse.status()).body(exceptionResponse);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ExceptionResponse> handleBadRequestException(
+            BadRequestException exception, HttpServletRequest request
+    ) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                HttpStatus.BAD_REQUEST,
+                exception.getCode(),
+                exception.getMessage(),
+                request.getServletPath(),
+                Instant.now());
+        log.error("Bad Request: code={}, path={}", exception.getCode(), request.getServletPath());
+        return ResponseEntity.status(exceptionResponse.status()).body(exceptionResponse);
+    }
+
 }
