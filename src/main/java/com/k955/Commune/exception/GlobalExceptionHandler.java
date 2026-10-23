@@ -27,4 +27,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(exceptionResponse.status()).body(exceptionResponse);
     }
 
+    @ExceptionHandler(InvalidRefreshTokenException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidRefreshTokenException(
+            InvalidRefreshTokenException exception, HttpServletRequest request
+    ) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                HttpStatus.BAD_REQUEST,
+                exception.getCode(),
+                exception.getMessage(),
+                request.getServletPath(),
+                Instant.now());
+        log.warn("Resource not found: code={}, path={}", exception.getCode(), request.getServletPath());
+        return ResponseEntity.status(exceptionResponse.status()).body(exceptionResponse);
+    }
+
 }

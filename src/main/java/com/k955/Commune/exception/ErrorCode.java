@@ -1,5 +1,7 @@
 package com.k955.Commune.exception;
 
 public enum ErrorCode {
-    USER_NOT_FOUND
+    USER_NOT_FOUND,
+    INVALID_REFRESH_TOKEN,
+    REFRESH_TOKEN_REVOKED, USER_NOT_PERMITTED, REFRESH_TOKEN_EXPIRED
 }
